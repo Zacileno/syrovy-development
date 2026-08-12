@@ -1,0 +1,20 @@
+import type { MetadataRoute } from "next";
+import { services } from "@/lib/content";
+import { site } from "@/lib/site";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticPages = ["", "/sluzby", "/realizace", "/recenze", "/o-nas", "/kontakt"];
+
+  return [
+    ...staticPages.map((path) => ({
+      url: `${site.url}${path}`,
+      changeFrequency: "monthly" as const,
+      priority: path === "" ? 1 : 0.8,
+    })),
+    ...services.map((service) => ({
+      url: `${site.url}/sluzby/${service.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
+}

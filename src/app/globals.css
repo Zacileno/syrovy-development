@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Značka Syrový Development — zelená z loga nahrazuje modrou Koupelen Syrový */
+  --color-brand: #2ca765;
+  --color-brand-dark: #238553;
+  --color-brand-light: #eaf6f0;
+
+  /* Doplňkové barvy převzaté z Koupelen Syrový */
+  --color-gold: #c5a66b;
+  --color-ink: #1a1937;
+  --color-ink-soft: #27263f;
+  --color-body: #666666;
+  --color-sand: #f3ede1;
+  --color-mist: #f8fafb;
+  --color-smoke: #f5f5f5;
+  --color-line: #dbdbdb;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --container-content: 75rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    @apply bg-white text-body font-sans antialiased;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink font-bold tracking-tight;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-brand text-white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Tvar tlačítek je shodný s Koupelnami Syrový: verzálky, prostrkání, ostré hrany */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none px-7 py-4
+         text-[13px] font-semibold uppercase tracking-[0.12em] leading-none
+         transition-colors duration-200 cursor-pointer;
+}
+
+@utility btn-primary {
+  @apply btn bg-brand text-white hover:bg-brand-dark;
+}
+
+@utility btn-outline {
+  @apply btn border border-line bg-transparent text-ink hover:border-ink;
+}
+
+@utility btn-ghost-light {
+  @apply btn border border-white/60 bg-transparent text-white hover:bg-white hover:text-ink;
+}
+
+@utility container-content {
+  @apply mx-auto w-full max-w-content px-5 sm:px-8;
 }
