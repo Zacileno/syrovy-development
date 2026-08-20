@@ -84,7 +84,8 @@ export function Header() {
           />
         </Link>
 
-        <nav aria-label="Hlavní navigace" className="hidden h-full lg:block">
+        {/* ml-auto odsune menu doprava, k tlačítku Sjednat schůzku */}
+        <nav aria-label="Hlavní navigace" className="ml-auto hidden h-full lg:block">
           <ul className="flex h-full items-center gap-7 xl:gap-9">
             {mainNav.map((item) =>
               item.children ? (
