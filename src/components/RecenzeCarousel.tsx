@@ -47,7 +47,7 @@ export function RecenzeCarousel({ items }: { items: Recenze[] }) {
               key={item.id}
               className="min-w-0 shrink-0 grow-0 basis-full sm:basis-[48%] lg:basis-[31.5%]"
             >
-              <RecenzeKartaMala item={item} priority={index < 3} />
+              <RecenzeKartaMala item={item} priority={index < 3} collapsible />
             </div>
           ))}
         </div>

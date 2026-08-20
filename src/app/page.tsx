@@ -1,10 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { RealizaceCarousel } from "@/components/RealizaceCarousel";
 import { RecenzeCarousel } from "@/components/RecenzeCarousel";
-import { CtaBand, FeatureGrid, Faq, ProcessSteps, Section, SectionHeading } from "@/components/ui";
-import { faq, processSteps, services, whyUs } from "@/lib/content";
-import { realizace } from "@/lib/realizace";
+import {
+  CtaBand,
+  FeatureGrid,
+  Faq,
+  MediaGrid,
+  ProcessSteps,
+  RodinaBlock,
+  Section,
+  SectionHeading,
+} from "@/components/ui";
+import { faq, media, processSteps, rodina, services, whyUs } from "@/lib/content";
 import { recenze } from "@/lib/recenze";
 
 export default function Home() {
@@ -34,8 +41,8 @@ export default function Home() {
             <Link href="/kontakt" className="btn-primary">
               Sjednat schůzku
             </Link>
-            <Link href="/realizace" className="btn-ghost-light">
-              Prohlédnout realizace
+            <Link href="/projekty" className="btn-ghost-light">
+              Prohlédnout projekty
             </Link>
           </div>
         </div>
@@ -81,27 +88,13 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Realizace */}
+      {/*
+        Sekce s karuselem projektů tu byla, klient ji nechal odstranit v rámci
+        zjednodušení. Fotky zůstávají na stránce /projekty, kam vede hero i menu.
+      */}
+
+      {/* Jak to probíhá — světle šedá, aby nenavazovala bílá na bílou po sekci Služby */}
       <Section tone="mist">
-        <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
-          <SectionHeading
-            align="left"
-            eyebrow="Naše práce"
-            title="Realizace, na kterých stojí naše jméno"
-            lead="Fotografie z dokončených koupelen. Stejná preciznost, se kterou přistupujeme k celým bytům a domům."
-          />
-          <Link href="/realizace" className="btn-outline shrink-0">
-            Všechny realizace
-          </Link>
-        </div>
-
-        <div className="mt-14">
-          <RealizaceCarousel items={realizace} />
-        </div>
-      </Section>
-
-      {/* Jak to probíhá */}
-      <Section>
         <SectionHeading
           eyebrow="Jak to probíhá"
           title="Šest kroků a máte hotovo"
@@ -120,6 +113,9 @@ export default function Home() {
         />
         <FeatureGrid items={whyUs} columns={4} />
       </Section>
+
+      {/* Rodinná značka */}
+      <RodinaBlock {...rodina} />
 
       {/* Synergie s Koupelnami Syrový */}
       <Section>
@@ -156,8 +152,17 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Recenze */}
-      <Section tone="mist">
+      {/* Napsali o nás */}
+      <Section tone="smoke">
+        <SectionHeading
+          title="Napsali o nás"
+          lead="Zmínky o naší rodinné značce Syrový, ze které Syrový Development vychází."
+        />
+        <MediaGrid items={media} />
+      </Section>
+
+      {/* Recenze — písková, aby nesplynula se šedou sekcí nad sebou */}
+      <Section tone="sand">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeading
             align="left"

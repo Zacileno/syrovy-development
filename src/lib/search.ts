@@ -30,9 +30,9 @@ export const searchIndex: SearchDoc[] = [
     text: [service.tagline, service.lead, service.perex, service.includes.join(" "), service.benefits.map((b) => `${b.title} ${b.text}`).join(" ")].join(" "),
   })),
   {
-    title: "Realizace",
-    href: "/realizace",
-    section: "Realizace",
+    title: "Projekty",
+    href: "/projekty",
+    section: "Projekty",
     text: "Fotografie dokončených koupelen. Tmavé velkoformátové obklady, dubový nábytek na míru, podsvícená zrcadla a černá sanita.",
   },
   {

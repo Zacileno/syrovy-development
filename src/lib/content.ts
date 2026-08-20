@@ -236,3 +236,146 @@ export const faq = [
       "Financování je dohoda přímo mezi vámi a námi, nejde přes banku. Nezkoumáme bonitu ani nechceme dokládat příjmy, takže schválení proběhne prakticky okamžitě. Konkrétní podmínky s vámi projdeme na schůzce.",
   },
 ];
+
+/**
+ * Rodinný blok na úvodní stránce.
+ *
+ * Přebírá myšlenku i skladbu bloku „Naše rodina je tu pro vás“ z webu Koupelen
+ * Syrový, text je ale přepsaný na Syrový Development.
+ *
+ * POZOR — fotka je převzatá z koupelnysyrovy.cz. Až budou vlastní fotky
+ * Syrový Development, je potřeba ji vyměnit.
+ */
+export const rodina = {
+  title: "Naše rodina je tu pro vás",
+  paragraphs: [
+    "Jsme rodina Syrových. Zakládáme si na kvalitě, smyslu pro detail, zkušenostech a individuálním přístupu ke každému zákazníkovi. Koupelnám se naše rodina věnuje už 30 let a od roku 2019 přinášíme lidem z celé České republiky prvotřídní zboží, služby a design za dostupné ceny.",
+    "Syrový Development je pokračování téhle cesty. Stejní lidé a stejný přístup, jen už ne jen v koupelně, ale v celém bytě nebo domě. Pomůžeme i vám?",
+  ],
+  cta: { label: "Poznejte nás blíž", href: "/o-nas" },
+  image: {
+    src: "/rodina.webp",
+    alt: "Rodina Syrových ve svém koupelnovém studiu",
+    blurDataURL:
+      "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoQAAYAA4BaJZACdG1/Aeg/ruoAAOJ+64k89CiyGSt5ckIDVun4CnOBCr39APtqcEzEiGe/1RvWsXr23xX+ysG/aCKAHU5Can+RAGaPE+qNCrrO/A8g4gAA",
+  },
+} as const;
+
+/**
+ * Blok „Napsali o nás“.
+ *
+ * POZOR — všechny zmínky se týkají Koupelen Syrový, tedy sesterské značky pod
+ * stejnou rodinou. Odkazy vedou na původní články, proto je nad kartami věta,
+ * která uvádí, že jde o rodinnou značku jako celek.
+ */
+export const media = [
+  {
+    logo: "/media/forbes.svg",
+    name: "Forbes",
+    kind: "Článek",
+    title: "Umístili jsme se v letošním výběru prestižního žebříčku Forbes 30 pod 30",
+    href: "https://www.koupelnysyrovy.cz/magazin/koupelny-syrovy-v-zebricku-forbes-30-pod-30/",
+  },
+  {
+    logo: "/media/ceska-televize.svg",
+    name: "Česká televize",
+    kind: "Reportáž",
+    title: "V pořadu Polopatě jsme mluvili o tom, jak postupovat při rekonstrukci koupelny",
+    href: "https://youtu.be/18JS2oQ5G_A",
+  },
+  {
+    logo: "/media/finmag.svg",
+    name: "Finmag",
+    kind: "Aktualita",
+    title: "Psalo se i o otevření našeho nového showroomu v Brně",
+    href: "https://www.finmag.cz/tiskove-zpravy/470141-koupelny-syrovy-v-brne-oteviraji-ctvrtou-pobocku-expanzi-naplnuje-cil-100-milionoveho-obratu-a-cili-na-dvojnasobek",
+  },
+  {
+    logo: "/media/mediaguru.svg",
+    name: "MediaGuru",
+    kind: "Aktualita",
+    title: "Naše pobočka v Praze zarezonovala i v mediálním deníku",
+    href: "https://www.mediaguru.cz/clanky/2024/04/koupelny-syrovy-instagram-je-nasim-nejdulezitejsim-akvizicnim-kanalem/",
+  },
+] as const;
+
+/** Milníky rodinné značky. Zkrácená verze časové osy z webu Koupelen Syrový. */
+export const milniky = [
+  {
+    year: "2019",
+    title: "Pardubice",
+    text: "Otevíráme první koupelnové studio a začínáme novou éru rodinné tradice.",
+  },
+  {
+    year: "2022",
+    title: "Realizace na klíč",
+    text: "Už nejsme jen designéři a prodejci. Spouštíme realizace koupelen na klíč a hlídáme si kvalitu všech prací.",
+  },
+  {
+    year: "2024",
+    title: "Praha a nové Pardubice",
+    text: "Vstupujeme do hlavního města a v Pardubicích znovu otevíráme nejmodernější koupelnové studio v Česku.",
+  },
+  {
+    year: "2025",
+    title: "Brno a Syrový Development",
+    text: "Otevíráme studio v Brně a zkušenost ze stovek koupelen přenášíme do celých bytů a domů.",
+  },
+];
+
+/**
+ * Tým.
+ *
+ * POZOR — fotky i lidé jsou převzatí z Koupelen Syrový. Syrový Development
+ * zatím nemá vlastní obsazení, personální složení musí potvrdit klient.
+ */
+export const tym = [
+  {
+    name: "Matouš Syrový",
+    role: "CEO",
+    text: "Matouš vede Koupelny Syrový od roku 2019 a stojí i za vznikem Syrový Development. V návrzích a realizacích se pohybuje od dob studentských brigád.",
+    photo: "/tym/matous.webp",
+    blurDataURL:
+      "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAACwBACdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdIE5IBLIA5SZ9Rorn1tKmWDnAAPehoucrdgm0dA8atijI6e+XcCILZ9N9eSlPp/RHuxpbQpc98i5TepqHMWbf4v3cigANmWIIz6bPBPu476A9JaxnylEpdiJT2MLZjQ07carPbqs5rdPi54pjughxCZDCc0zH9VPFqry3WZAA",
+  },
+  {
+    name: "Kristýna Syrová",
+    role: "HR a obchod",
+    text: "Týna začala spolu s Matoušem budovat novou éru rodinné firmy. Je jednatelkou a stará se o lidi, bez kterých by žádná realizace nedopadla.",
+    photo: "/tym/kristyna.webp",
+    blurDataURL:
+      "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAACQBACdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMoRwIsBbOQCljFe+HFeOAgAA+eSfzjSKB+DdKxQfbr1Wh1VjNP6+Cm3rl1H/Ecb90/NTPD7FHKnKGZG/ITIfakkidgH5Jn7Zqjx+OAfXMwlTPG1dckAgiiZDXO3GbcOKGiewVbI47AZvlY9CVEawXeDFr9GdMNGPYFvvbT/w7+ZBRVAz+TToLJa9vvvespM/307+B7FnAAA=",
+  },
+  {
+    name: "Barbora Syrová",
+    role: "Produkt a nákup",
+    text: "Barča má na starosti produktové a nákupní oddělení. Její superschopností je organizace, pečlivost a schopnost dotáhnout dodávky včas.",
+    photo: "/tym/barbora.webp",
+    blurDataURL:
+      "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAAAQBQCdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMoR4OsBbJvoAAJ19mmgNkftVxUEgAPnkn85AnOplOlxhiXQRP4pRzVkVPpYazMyumd2aG/a4C5dRT7rWh+D6MI+/c+kwNVAe2YzofzPb00log+3O98/ZGHZZSo8ZM+ZQKCRP6Wf3WtUfuwA5X446PSKgJzb6zs8QpfrUWgBNwtb/cOLrAEPie82NyEao96f+l94PespPyyUQK1wAAAA=",
+  },
+  {
+    name: "Petr Lochman",
+    role: "Koordinátor realizací",
+    text: "Petr zajišťuje hladký průběh realizace. Plánuje termíny, komunikuje s řemesly a dodavateli a hlídá, aby na sebe práce navazovaly.",
+    photo: "/tym/petr.webp",
+    blurDataURL:
+      "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABQBQCdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMoRwIsx9gLsgAb7zjrsBLHdX1Lts3gAA+elCp7MIOwyA2tAubgIZXm0DtbP6G+LnJ3tCGBOUwcRjme+Lfv9T2ZnT6bkQECRy/g00uEzCOyToZrLxGUO47/g+4m/Se8M+Cpz6KPoTXseT7g5LeqszviGuMrbDUjCh5F7D/2vk+v+QyMd1RS7iBwEX/QTpf8f/gzWRn9AAAAA=",
+  },
+  {
+    name: "Jan Lagron",
+    role: "Vedoucí provozu",
+    text: "Honza má na starosti běžný provoz, dopravu a reklamace. Od začátku ukazuje nadání pro zlepšování procesů.",
+    photo: "/tym/jan-lagron.webp",
+    blurDataURL:
+      "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABQBACdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMoMrZCCz92PdbMUh7ykwAP1G1tuA4OPodFbCX1+4C7uqVf2lipyHFtKIJ7oJ25KzP29GK6ivVaVU+loUFz//j4ZWTPKgd1PatVvPH/njJB+q7Q3dPbQHjWIyWrjM5TsMC/J3DPGjRA2J1sxV+2t+D28Ko0plDAvA1b24AA==",
+  },
+  {
+    name: "Vladimír Jirásek",
+    role: "Servisní technik",
+    text: "Vláďa je s námi od úplného začátku. Jeho superschopností je rychlé řešení technických problémů přímo na stavbě.",
+    photo: "/tym/vladimir.webp",
+    blurDataURL:
+      "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAAAwBQCdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMoMYNcBtgLsAAn67OSCYG/dQNDYlQAD6XJNv7+EM1WXNRnd+tte6YRwnkqC7IJcn+mN7hRFwjrPJgbyB9QPBghn7gji34TYrAkYDIj+blNg+QCht7mYx4kLqNMA/m0CFX2Uhm1oI27O6qPuetGlQv0QePiHuNQzKm/NakGGgxvMIC1kZ/1YAAA==",
+  },
+];

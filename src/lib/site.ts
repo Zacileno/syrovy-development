@@ -29,9 +29,16 @@ export type NavItem = {
   children?: { label: string; href: string }[];
 };
 
-/** E-shop provozují Koupelny Syrový, odkazujeme na něj ven. */
+/** E-shop provozují Koupelny Syrový. V hlavičce už na něj neodkazujeme, zůstal jen v patičce. */
 export const eshopUrl = "https://www.koupelnysyrovy.cz/e-shop/";
 
+/**
+ * Hlavní navigace.
+ *
+ * Klient si přál hlavičku zjednodušit, proto jsou tu jen tři položky. E-shop
+ * a Showroomy z menu zmizely, na kontakty i showroomy vede tlačítko Sjednat
+ * schůzku, na stránku O nás rodinný blok na úvodní stránce a patička.
+ */
 export const mainNav: NavItem[] = [
   {
     label: "Služby",
@@ -43,17 +50,8 @@ export const mainNav: NavItem[] = [
       { label: "Výstavba na splátky", href: "/sluzby/vystavba-na-splatky" },
     ],
   },
-  { label: "Realizace", href: "/realizace" },
+  { label: "Projekty", href: "/projekty" },
   { label: "Recenze", href: "/recenze" },
-  { label: "E-shop", href: eshopUrl, external: true },
-  { label: "Showroomy", href: "/kontakt#showroomy" },
-];
-
-/** Drobné odkazy v horním pruhu hlavičky. */
-export const topNav = [
-  { label: "O nás", href: "/o-nas" },
-  { label: "Realizace", href: "/realizace" },
-  { label: "Kontakty", href: "/kontakt" },
 ];
 
 /**

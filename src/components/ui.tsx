@@ -1,12 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Tone = "white" | "sand" | "mist" | "ink";
+type Tone = "white" | "sand" | "mist" | "smoke" | "ink";
 
 const toneClasses: Record<Tone, string> = {
   white: "bg-white",
   sand: "bg-sand",
   mist: "bg-mist",
+  smoke: "bg-smoke",
   ink: "bg-ink text-white/70",
 };
 
@@ -216,5 +218,149 @@ export function PageHero({
         {lead && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{lead}</p>}
       </div>
     </section>
+  );
+}
+
+/**
+ * Rodinný blok — fotka přes celou šířku s textem v levé části.
+ *
+ * Vychází z bloku „Naše rodina je tu pro vás“ na webu Koupelen Syrový.
+ */
+export function RodinaBlock({
+  title,
+  paragraphs,
+  cta,
+  image,
+}: {
+  title: string;
+  paragraphs: readonly string[];
+  cta: { label: string; href: string };
+  image: { src: string; alt: string; blurDataURL: string };
+}) {
+  return (
+    <section className="relative isolate overflow-hidden bg-ink">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes="100vw"
+        placeholder="blur"
+        blurDataURL={image.blurDataURL}
+        className="-z-10 object-cover object-[62%_50%]"
+      />
+      {/* Vlevo tmavší, aby byl text čitelný přes světlejší část fotky */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-ink/75 to-ink/20 lg:to-transparent" />
+
+      <div className="container-content py-20 lg:py-28">
+        <div className="max-w-xl">
+          <h2 className="text-3xl leading-tight text-white sm:text-4xl">{title}</h2>
+          <div className="mt-6 space-y-5">
+            {paragraphs.map((text) => (
+              <p key={text.slice(0, 40)} className="text-lg leading-relaxed text-white/85">
+                {text}
+              </p>
+            ))}
+          </div>
+          <Link
+            href={cta.href}
+            className="btn mt-10 bg-white text-ink hover:bg-brand hover:text-white"
+          >
+            {cta.label}
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Blok „Napsali o nás“ — mřížka bílých karet s logy médií. */
+export function MediaGrid({
+  items,
+}: {
+  items: readonly {
+    logo: string;
+    name: string;
+    kind: string;
+    title: string;
+    href: string;
+  }[];
+}) {
+  return (
+    <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          className="group flex flex-col items-center bg-white p-8 text-center transition-shadow hover:shadow-lg"
+        >
+          <div className="relative h-10 w-full">
+            <Image
+              src={item.logo}
+              alt={item.name}
+              fill
+              unoptimized
+              sizes="200px"
+              className="object-contain"
+            />
+          </div>
+          <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-body/70">
+            {item.kind}
+          </p>
+          <p className="mt-3 font-semibold leading-relaxed text-ink transition-colors group-hover:text-brand">
+            {item.title}
+          </p>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+/** Časová osa milníků rodinné značky. */
+export function Milniky({ items }: { items: { year: string; title: string; text: string }[] }) {
+  return (
+    <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((item) => (
+        <li key={item.year} className="relative border-t border-line pt-6">
+          <span className="absolute -top-px left-0 h-px w-12 bg-brand" />
+          <span className="text-[13px] font-semibold tracking-[0.2em] text-brand">{item.year}</span>
+          <h3 className="mt-3 text-xl">{item.title}</h3>
+          <p className="mt-3 leading-relaxed">{item.text}</p>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** Mřížka lidí z týmu. */
+export function TeamGrid({
+  items,
+}: {
+  items: { name: string; role: string; text: string; photo: string; blurDataURL: string }[];
+}) {
+  return (
+    <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((person) => (
+        <div key={person.name}>
+          <div className="relative aspect-[3/4] overflow-hidden bg-smoke">
+            <Image
+              src={person.photo}
+              alt={person.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL={person.blurDataURL}
+              className="object-cover object-top"
+            />
+          </div>
+          <h3 className="mt-5 text-xl">{person.name}</h3>
+          <p className="mt-1 text-[13px] font-semibold uppercase tracking-[0.12em] text-brand">
+            {person.role}
+          </p>
+          <p className="mt-3 leading-relaxed">{person.text}</p>
+        </div>
+      ))}
+    </div>
   );
 }

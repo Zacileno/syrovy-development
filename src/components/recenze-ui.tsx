@@ -26,8 +26,45 @@ export function OverenaRecenze() {
   );
 }
 
+/**
+ * Delší recenze na úvodní stránce zabalíme, aby karty nebyly přes celou obrazovku.
+ * Text se nijak nekrátí, jen se schová za rozbalovací pole.
+ *
+ * Kratší recenze necháme vypsané rovnou, u nich by odkaz „Číst celé“ nedával smysl.
+ */
+const DELKA_PRO_ZABALENI = 180;
+
+function Citace({ quote, collapsible }: { quote: string; collapsible: boolean }) {
+  if (!collapsible || quote.length <= DELKA_PRO_ZABALENI) {
+    return <p className="mt-4 italic leading-relaxed">{quote}</p>;
+  }
+
+  return (
+    <details className="group mt-4">
+      <summary className="cursor-pointer list-none marker:hidden">
+        {/* Bez `block` — ten by přebil display:-webkit-box, který line-clamp potřebuje. */}
+        <span className="italic leading-relaxed line-clamp-4 group-open:line-clamp-none">
+          {quote}
+        </span>
+        <span className="mt-3 inline-block text-[13px] font-semibold uppercase tracking-[0.12em] text-brand">
+          <span className="group-open:hidden">Číst celé</span>
+          <span className="hidden group-open:inline">Zabalit</span>
+        </span>
+      </summary>
+    </details>
+  );
+}
+
 /** Menší karta: fotka nahoře, pod ní text na šedém podkladu. */
-export function RecenzeKartaMala({ item, priority = false }: { item: Recenze; priority?: boolean }) {
+export function RecenzeKartaMala({
+  item,
+  priority = false,
+  collapsible = false,
+}: {
+  item: Recenze;
+  priority?: boolean;
+  collapsible?: boolean;
+}) {
   return (
     <article className="flex h-full flex-col bg-smoke">
       <div className="relative aspect-[3/2] overflow-hidden">
@@ -46,7 +83,7 @@ export function RecenzeKartaMala({ item, priority = false }: { item: Recenze; pr
         <QuoteMark />
         <h3 className="mt-4 text-2xl leading-tight">{item.title}</h3>
         {item.subtitle && <p className="mt-2 font-semibold text-brand">{item.subtitle}</p>}
-        <p className="mt-4 italic leading-relaxed">{item.quote}</p>
+        <Citace quote={item.quote} collapsible={collapsible} />
         <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
           <span className="font-semibold text-ink">{item.author}</span>
           <OverenaRecenze />

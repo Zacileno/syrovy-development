@@ -100,8 +100,8 @@ export default function RecenzePage() {
 
         <p className="mt-12 text-center text-[14px]">
           Recenze pocházejí od zákazníků Syrový Group.{" "}
-          <Link href="/realizace" className="underline underline-offset-4 hover:text-brand">
-            Prohlédněte si i naše realizace
+          <Link href="/projekty" className="underline underline-offset-4 hover:text-brand">
+            Prohlédněte si i naše projekty
           </Link>
           .
         </p>

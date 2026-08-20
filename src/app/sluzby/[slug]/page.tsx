@@ -105,8 +105,8 @@ export default async function ServicePage({ params }: PageProps<"/sluzby/[slug]"
             title="Podívejte se, jak to děláme"
             lead="Fotografie z dokončených koupelen. Stejný přístup k detailu přenášíme do celých bytů a domů."
           />
-          <Link href="/realizace" className="btn-outline shrink-0">
-            Všechny realizace
+          <Link href="/projekty" className="btn-outline shrink-0">
+            Všechny projekty
           </Link>
         </div>
         <div className="mt-14">

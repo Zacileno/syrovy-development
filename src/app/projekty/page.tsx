@@ -5,17 +5,17 @@ import { CtaBand, PageHero, Section, SectionHeading } from "@/components/ui";
 import { realizace } from "@/lib/realizace";
 
 export const metadata: Metadata = {
-  title: "Realizace",
+  title: "Projekty",
   description:
     "Fotografie z dokončených koupelen Syrový Development. Prohlédněte si, jak vypadá naše práce v detailu.",
 };
 
-export default function RealizacePage() {
+export default function ProjektyPage() {
   return (
     <>
       <PageHero
         eyebrow="Naše práce"
-        title="Realizace, na kterých stojí naše jméno"
+        title="Projekty, na kterých stojí naše jméno"
         lead="Detail, na kterém záleží. Prohlédněte si dokončené koupelny. Stejnou preciznost přenášíme do celých bytů a domů."
         image={
           <>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
-import { PageHero, Section, SectionHeading, ShowroomCard } from "@/components/ui";
+import { PageHero, Section, SectionHeading } from "@/components/ui";
 import { showrooms, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -82,19 +82,32 @@ export default function KontaktPage() {
         </div>
       </Section>
 
+      {/*
+        Showroomy jsou tu jako doplněk, ne jako hlavní sdělení. Klient si přál,
+        aby na ně web příliš neupozorňoval, proto jen střídmý výpis bez karet.
+      */}
       <Section tone="mist" id="showroomy">
-        <SectionHeading
-          align="left"
-          eyebrow="Showroomy"
-          title="Zastavte se za námi osobně"
-          lead="Materiály, obklady i sanitu si u nás osaháte naživo. Doporučujeme domluvit si schůzku předem."
-        />
+        <h2 className="text-2xl">Komunikujete raději osobně?</h2>
+        <p className="mt-3 max-w-2xl leading-relaxed">
+          Stavte se u nás. Materiály, obklady i sanitu si osaháte naživo. Schůzku doporučujeme
+          domluvit předem, ať se vám můžeme věnovat.
+        </p>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {showrooms.map((showroom) => (
-            <ShowroomCard key={showroom.city} showroom={showroom} />
+            <li key={showroom.city} className="border-t border-line pt-5">
+              <h3 className="text-[15px] font-semibold text-ink">{showroom.city}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed">{showroom.address}</p>
+              <p className="mt-2 text-[14px] leading-relaxed">{showroom.hours}</p>
+              <a
+                href={showroom.phoneHref}
+                className="mt-2 inline-block text-[15px] font-semibold text-ink transition-colors hover:text-brand"
+              >
+                {showroom.phone}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </Section>
     </>
   );
