@@ -1,16 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { services } from "@/lib/content";
+import { site } from "@/lib/site";
 
 /**
  * Poptávkový formulář.
  *
- * POZOR — odesílání zatím NENÍ napojené. Podle domluvy s klientem se dořeší,
- * až bude známá doména a cílový e-mail (Resend nebo Formspree).
- * Formulář se proto pouze zvaliduje a zobrazí upozornění, aby si nikdo
- * nemyslel, že poptávka odešla.
+ * Posílá data na /api/poptavka, odkud jdou přes Resend e-mailem. Potvrzení se
+ * ukáže, až když server odeslání opravdu potvrdí.
  */
+
+type Stav = "idle" | "sending" | "sent" | "error";
 
 const fieldClasses =
   "w-full border border-line bg-white px-4 py-3 text-[15px] text-ink outline-none transition-colors placeholder:text-body/60 focus:border-brand";
@@ -18,17 +19,35 @@ const fieldClasses =
 const labelClasses = "block text-[13px] font-semibold uppercase tracking-[0.1em] text-ink";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [stav, setStav] = useState<Stav>("idle");
+
+  async function odeslat(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formular = event.currentTarget;
+    setStav("sending");
+
+    try {
+      const odpoved = await fetch("/api/poptavka", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(formular))),
+      });
+      if (!odpoved.ok) throw new Error(`HTTP ${odpoved.status}`);
+      formular.reset();
+      setStav("sent");
+    } catch {
+      setStav("error");
+    }
+  }
 
   return (
-    <form
-      noValidate={false}
-      onSubmit={(event) => {
-        event.preventDefault();
-        setSubmitted(true);
-      }}
-      className="space-y-6"
-    >
+    <form noValidate={false} onSubmit={odeslat} className="space-y-6">
+      {/* Past na roboty: člověk toto pole nevidí a nevyplní. */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Web</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <label htmlFor="name" className={labelClasses}>
@@ -85,21 +104,30 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-wrap items-center gap-6">
-        <button type="submit" className="btn-primary">
-          Odeslat poptávku
+        <button type="submit" className="btn-primary" disabled={stav === "sending"}>
+          {stav === "sending" ? "Odesílám…" : "Odeslat poptávku"}
         </button>
         <p className="text-[13px] leading-relaxed text-body">
           Odesláním souhlasíte se zpracováním osobních údajů za účelem vyřízení poptávky.
         </p>
       </div>
 
-      {submitted && (
+      {stav === "sent" && (
         <p
           role="status"
           className="border-l-2 border-brand bg-brand-light px-5 py-4 text-[15px] leading-relaxed text-ink"
         >
-          <strong>Formulář zatím neodesílá.</strong> Napojení na e-mail dořešíme, jakmile bude
-          známá doména a cílová adresa. Do té doby nám prosím zavolejte nebo napište přímo.
+          <strong>Děkujeme, poptávka dorazila.</strong> Brzy se vám ozveme.
+        </p>
+      )}
+
+      {stav === "error" && (
+        <p role="alert" className="border-l-2 border-red-600 bg-red-50 px-5 py-4 text-[15px] leading-relaxed text-ink">
+          <strong>Odeslání se nepovedlo.</strong> Zkuste to prosím znovu, nebo nám zavolejte na{" "}
+          <a href={site.phoneHref} className="underline">
+            {site.phone}
+          </a>
+          .
         </p>
       )}
     </form>
