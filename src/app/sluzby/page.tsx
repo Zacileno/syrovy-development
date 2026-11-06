@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, PageHero, ProcessSteps, Section, SectionHeading } from "@/components/ui";
 import { processSteps, services } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Naše služby",
+export const metadata: Metadata = pageMetadata({
+  title: "Služby: rekonstrukce, stavby a koupelny",
   description:
-    "Rekonstrukce bytů a domů, stavby rodinných domů, koupelny na klíč a výstavba na splátky. Kompletní realizace pod jednou střechou.",
-};
+    "Rekonstrukce bytů a domů, stavby rodinných domů, koupelny na klíč a výstavba na splátky. Kompletní realizace pod jednou střechou, od návrhu po hotové bydlení.",
+  path: "/sluzby",
+});
 
 export default function SluzbyPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Služby" }])} />
       <PageHero
         eyebrow="Naše služby"
         title="Kompletní realizace pod jednou střechou"

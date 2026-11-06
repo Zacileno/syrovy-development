@@ -14,6 +14,10 @@ export type Service = {
   navTitle: string;
   tagline: string;
   lead: string;
+  /** Titulek do vyhledávače, bez názvu značky. */
+  seoTitle: string;
+  /** Popis do vyhledávače, 150 až 160 znaků. */
+  seoDescription: string;
   image: string;
   perex: string;
   includes: string[];
@@ -27,6 +31,9 @@ export const services: Service[] = [
     navTitle: "Rekonstrukce bytů a domů",
     tagline: "Kompletní rekonstrukce",
     lead: "Koupili jste starší byt nebo chcete konečně předělat ten svůj? Postaráme se o všechno, od bouracích prací po zapojení poslední zásuvky.",
+    seoTitle: "Rekonstrukce bytů a domů na klíč",
+    seoDescription:
+      "Koupili jste starší byt nebo chcete konečně předělat ten svůj? Postaráme se o všechno, od bouracích prací po zapojení poslední zásuvky. Vše s jednou smlouvou.",
     image: "/realizace/dsc01553.webp",
     perex:
       "Rekonstrukce bytu je běh na dlouhou trať, ve kterém se musí potkat deset různých řemesel ve správném pořadí. Přesně to je naše práce. Vy si vyberete, jak má byt vypadat, my zajistíme, aby to tak dopadlo. V termínu a bez toho, že byste museli komukoliv volat a shánět ho.",
@@ -61,6 +68,9 @@ export const services: Service[] = [
     navTitle: "Stavby rodinných domů",
     tagline: "Od základů po klíče",
     lead: "Postavíme dům, který vydrží generace. Od základové desky po hotový interiér, ve kterém se dá druhý den bydlet.",
+    seoTitle: "Stavby rodinných domů na klíč",
+    seoDescription:
+      "Postavíme dům, který vydrží generace. Od základové desky po hotový interiér, ve kterém se dá druhý den bydlet. Prvotřídní materiály a ohled na provozní náklady.",
     image: "/realizace/dsc01173.webp",
     perex:
       "Stavba domu je pravděpodobně největší investice vašeho života. Proto k ní přistupujeme tak, aby na konci nebyla žádná nepříjemná překvapení. Jasný rozpočet, jasný harmonogram a jeden partner, který dům dotáhne až do stavu, kdy se do něj dá nastěhovat.",
@@ -93,6 +103,9 @@ export const services: Service[] = [
     navTitle: "Koupelny na klíč",
     tagline: "To, co umíme nejlépe",
     lead: "Stovky hotových koupelen, vlastní showroomy a designéři. Tady jsme doma a odsud vychází všechno ostatní, co děláme.",
+    seoTitle: "Koupelny na klíč od návrhu po realizaci",
+    seoDescription:
+      "Stovky hotových koupelen, vlastní showroomy a designéři. Tady jsme doma a odsud vychází všechno ostatní, co děláme. Materiály a vzorové koupelny uvidíte osobně.",
     image: "/realizace/dsc01753.webp",
     perex:
       "Koupelna je nejtěžší místnost v bytě. Potkává se v ní voda, elektřina, obklady i nábytek na milimetr přesně. Když ji zvládnete odvést dobře, zvládnete odvést dobře cokoliv. Právě proto stojí Syrový Development na zkušenosti z koupelen, a proto ji přenášíme do celých bytů a domů.",
@@ -125,6 +138,9 @@ export const services: Service[] = [
     navTitle: "Výstavba na splátky",
     tagline: "Financování bez banky",
     lead: "Správný okamžik pro rekonstrukci je tehdy, když ji potřebujete, ne až když na ni našetříte. Financování řešíme přímo u nás.",
+    seoTitle: "Výstavba na splátky bez banky",
+    seoDescription:
+      "Správný okamžik pro rekonstrukci je tehdy, když ji potřebujete, ne až když na ni našetříte. Financování řešíme přímo u nás, bez banky a bez dokládání příjmů.",
     image: "/realizace/dsc01599.webp",
     perex:
       "Program financování, který jsme roky ladili na koupelnách, teď otevíráme i pro rekonstrukce a stavby. Není to půjčka od banky, je to dohoda přímo mezi vámi a námi. Bez zkoumání bonity, bez dokládání příjmů a bez čekání na schvalovací proces.",

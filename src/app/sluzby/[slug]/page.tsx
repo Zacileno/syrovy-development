@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,6 +7,7 @@ import { RealizaceCarousel } from "@/components/RealizaceCarousel";
 import { CtaBand, Faq, FeatureGrid, PageHero, ProcessSteps, Section, SectionHeading } from "@/components/ui";
 import { faq, getService, processSteps, services } from "@/lib/content";
 import { realizace } from "@/lib/realizace";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -16,11 +18,12 @@ export async function generateMetadata({ params }: PageProps<"/sluzby/[slug]">):
   const service = getService(slug);
   if (!service) return {};
 
-  return {
-    title: service.title,
-    description: service.lead,
-    openGraph: { title: service.title, description: service.lead, images: [service.image] },
-  };
+  return pageMetadata({
+    title: service.seoTitle,
+    description: service.seoDescription,
+    path: `/sluzby/${service.slug}`,
+    image: `/og/${service.slug}.jpg`,
+  });
 }
 
 export default async function ServicePage({ params }: PageProps<"/sluzby/[slug]">) {
@@ -32,6 +35,7 @@ export default async function ServicePage({ params }: PageProps<"/sluzby/[slug]"
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Služby", path: "/sluzby" }, { name: service.title }])} />
       <PageHero
         eyebrow={service.tagline}
         title={service.title}

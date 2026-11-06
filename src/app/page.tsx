@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { RecenzeCarousel } from "@/components/RecenzeCarousel";
 import {
   CtaBand,
@@ -13,10 +15,16 @@ import {
 } from "@/components/ui";
 import { faq, media, processSteps, rodina, services, whyUs } from "@/lib/content";
 import { recenze } from "@/lib/recenze";
+import { faqJsonLd, homeJsonLd, pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = pageMetadata({ description: site.description, path: "/" });
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeJsonLd} />
+      <JsonLd data={faqJsonLd(faq)} />
       {/* Hero */}
       <section className="relative isolate flex min-h-[600px] items-center overflow-hidden lg:min-h-[720px]">
         <Image

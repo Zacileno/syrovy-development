@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, Milniky, PageHero, Section, SectionHeading, TeamGrid } from "@/components/ui";
 import { milniky, tym } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "O nás",
+export const metadata: Metadata = pageMetadata({
+  title: "O nás: stavební divize značky Syrový",
   description:
     "Syrový Development je stavební divize rodinné značky Syrový. Navazujeme na zkušenost ze stovek realizovaných koupelen a přenášíme ji do celých bytů a domů.",
-};
+  path: "/o-nas",
+});
 
 export default function ONasPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "O nás" }])} />
       <PageHero
         eyebrow="O nás"
         title="Jsme rodina Syrových"

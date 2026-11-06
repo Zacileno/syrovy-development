@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { RealizaceCarousel } from "@/components/RealizaceCarousel";
 import { CtaBand, PageHero, Section, SectionHeading } from "@/components/ui";
 import { realizace } from "@/lib/realizace";
 
-export const metadata: Metadata = {
-  title: "Projekty",
+export const metadata: Metadata = pageMetadata({
+  title: "Projekty: dokončené koupelny na klíč",
   description:
-    "Fotografie z dokončených koupelen Syrový Development. Prohlédněte si, jak vypadá naše práce v detailu.",
-};
+    "Fotografie z dokončených koupelen Syrový Development. Prohlédněte si, jak vypadá naše práce v detailu, od obkladů a baterií po nábytek na míru.",
+  path: "/projekty",
+});
 
 export default function ProjektyPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Projekty" }])} />
       <PageHero
         eyebrow="Naše práce"
         title="Projekty, na kterých stojí naše jméno"

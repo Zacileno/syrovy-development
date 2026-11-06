@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { RecenzeShowcase } from "@/components/RecenzeShowcase";
@@ -6,11 +8,12 @@ import { RecenzeKartaMala, RecenzeKartaVelka } from "@/components/recenze-ui";
 import { CtaBand, Section } from "@/components/ui";
 import { recenze, recenzeSPorovnanim } from "@/lib/recenze";
 
-export const metadata: Metadata = {
-  title: "Recenze zákazníků",
+export const metadata: Metadata = pageMetadata({
+  title: "Recenze a reference zákazníků",
   description:
-    "Co o naší práci říkají zákazníci. Ověřené reference z realizovaných koupelen, rekonstrukcí a staveb.",
-};
+    "Co o naší práci říkají zákazníci. Ověřené reference z realizovaných koupelen, rekonstrukcí a staveb, včetně fotografií před a po dokončení.",
+  path: "/recenze",
+});
 
 /** Střídavé rozvržení: úzká karta a široká fotka, každý druhý řádek obráceně. */
 function dvojice(items: typeof recenze) {
@@ -26,6 +29,7 @@ export default function RecenzePage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Recenze" }])} />
       {/* Úvod se dvěma sloupci */}
       <section className="container-content grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-20">
         <div>

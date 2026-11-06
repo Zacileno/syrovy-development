@@ -11,7 +11,7 @@ export const site = {
   /** PLACEHOLDER — čeká se na finální doménu */
   url: "https://www.syrovydevelopment.cz",
   description:
-    "Kompletní realizace bytů, domů a koupelen na klíč. Jeden partner od návrhu po hotové bydlení.",
+    "Kompletní realizace bytů, domů a koupelen na klíč. Jeden partner od návrhu po hotové bydlení, showroomy v Pardubicích, Hradci Králové, Brně a Praze.",
   /** PLACEHOLDER — převzato z Koupelen Syrový */
   phone: "725 058 488",
   phoneHref: "tel:+420725058488",

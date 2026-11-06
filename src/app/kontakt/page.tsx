@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero, Section, SectionHeading } from "@/components/ui";
 import { showrooms, site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Kontakt",
+export const metadata: Metadata = pageMetadata({
+  title: "Kontakt a nezávazná konzultace",
   description:
     "Domluvte si nezávaznou konzultaci k rekonstrukci bytu, stavbě domu nebo koupelně na klíč. Showroomy v Pardubicích, Hradci Králové, Brně a Praze.",
-};
+  path: "/kontakt",
+});
 
 export default function KontaktPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Kontakt" }])} />
       <PageHero
         eyebrow="Kontakt"
         title="Pojďme probrat váš projekt"
