@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     title: `${site.name} ~ Kompletní realizace bytů, domů a koupelen`,
     description: site.description,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} ~ Kompletní realizace bytů, domů a koupelen`,
+    description: site.description,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
